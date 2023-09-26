@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://8cx1l0upcqrm"]
+
+[ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_irbai"]
+[ext_resource type="Script" path="res://Scripts/HitboxComponent.gd" id="2_160j5"]
+[ext_resource type="Script" path="res://Scripts/VidaComponent.gd" id="3_pfuo7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0nduh"]
+radius = 19.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jjq76"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_irbai")
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+script = ExtResource("2_160j5")
+
+[node name="Hitbox" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_0nduh")
+
+[node name="MoveHitBox" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_jjq76")
+
+[node name="VidaComponent" type="Node2D" parent="."]
+script = ExtResource("3_pfuo7")

@@ -2,29 +2,25 @@ extends CharacterBody2D
 
 class_name Player
 
-@export var speed:=500
+@export var speed:=250
 
-var move_up: StringName
-var move_down: StringName
-var move_right: StringName
-var move_left: StringName
+@export var move_up: StringName
+@export var move_down: StringName
+@export var move_right: StringName
+@export var move_left: StringName
+@onready var animated_sprite = $AnimatedSprite2D
+@export var vida_component: VidaComponent
+@export var hitbox_component: HitboxComponent
+var input_direction
+#@onready var weapon = $Weapon
 
-var animated_sprite: AnimatedSprite2D
-
-
-func _init(move_up: StringName, move_down: StringName, move_right: StringName, move_left: StringName, player: int):
-	self.move_up = move_up
-	self.move_down = move_down
-	self.move_right = move_right
-	self.move_left = move_left
-	animated_sprite = AnimatedSprite2D.new()
-	animated_sprite.sprite_frames = load("res://Assets/SpriteFrames_player"+str(player)+".tres")
+func _ready():
 	y_sort_enabled = true
-	add_child(animated_sprite)
+	hitbox_component.connect("body_entered", _on_hitbox_component_body_entered)
 
 func get_input_animation()->Vector2:
-	var input_direction := Input.get_vector(move_left, move_right, move_up, move_down);
-	if(input_direction.length() > 0):
+	input_direction = Input.get_vector(move_left, move_right, move_up, move_down);
+	if(input_direction.length() >0):
 		if(input_direction.y == -1):
 			animated_sprite.play("walk_up");
 		if(input_direction.y == 1):
@@ -50,12 +46,21 @@ func get_input_animation()->Vector2:
 				animated_sprite.flip_h = true;
 				animated_sprite.play("walk_diagonal_down");
 	else:
-		animated_sprite.play("idle");
+		if(animated_sprite.is_playing()):
+			animated_sprite.play("idle");
 	return input_direction
 
 func _physics_process(delta)->void:
-	var input_direction = get_input_animation()
-	velocity =  input_direction * speed;
-	move_and_slide();
-	position.x = clamp(position.x, 0, get_viewport_rect().size.x)
-	position.y = clamp(position.y, 0, get_viewport_rect().size.y)
+	if(animated_sprite):
+		get_input_animation()
+		if(input_direction.length() > 0):
+			if(input_direction.length() > 1):
+				speed = 400
+			else:
+				speed = 250
+			velocity =  input_direction * speed;
+			move_and_slide();
+
+
+func _on_hitbox_component_body_entered(body):
+	print(body)

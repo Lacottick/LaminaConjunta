@@ -1,0 +1,164 @@
+[gd_scene load_steps=21 format=3 uid="uid://vxk1y7wcceel"]
+
+[ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_f02mc"]
+[ext_resource type="Texture2D" uid="uid://dwpjk51qjlt1o" path="res://Assets/Player/e4493aecbe03ac9.png" id="2_4abic"]
+[ext_resource type="Texture2D" uid="uid://bmppe5t5h8abv" path="res://icon.svg" id="2_ra0yn"]
+[ext_resource type="Script" path="res://Scripts/HitboxComponent.gd" id="3_rb3al"]
+[ext_resource type="Script" path="res://Scripts/VidaComponent.gd" id="4_aerj6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0iee"]
+atlas = ExtResource("2_4abic")
+region = Rect2(0, 0, 233, 283)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eoswn"]
+atlas = ExtResource("2_4abic")
+region = Rect2(0, 0, 197, 283)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_toee1"]
+atlas = ExtResource("2_4abic")
+region = Rect2(245, 0, 197, 283)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5ab0"]
+atlas = ExtResource("2_4abic")
+region = Rect2(490, 0, 197, 283)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vs50n"]
+atlas = ExtResource("2_4abic")
+region = Rect2(735, 0, 197, 283)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hshl8"]
+atlas = ExtResource("2_4abic")
+region = Rect2(0, 849, 233, 283)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uf6nf"]
+atlas = ExtResource("2_4abic")
+region = Rect2(233, 849, 233, 283)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hfog"]
+atlas = ExtResource("2_4abic")
+region = Rect2(466, 849, 233, 283)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gbnk"]
+atlas = ExtResource("2_4abic")
+region = Rect2(699, 849, 233, 283)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2ghp"]
+atlas = ExtResource("2_4abic")
+region = Rect2(0, 283, 197, 283)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oi81r"]
+atlas = ExtResource("2_4abic")
+region = Rect2(245, 283, 197, 283)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bo3sa"]
+atlas = ExtResource("2_4abic")
+region = Rect2(490, 283, 197, 283)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6664q"]
+atlas = ExtResource("2_4abic")
+region = Rect2(735, 283, 197, 283)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0ohso"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e0iee")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ra0yn")
+}],
+"loop": true,
+"name": &"walk_diagonal_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ra0yn")
+}],
+"loop": true,
+"name": &"walk_diagonal_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eoswn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_toee1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5ab0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vs50n")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hshl8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uf6nf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hfog")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gbnk")
+}],
+"loop": true,
+"name": &"walk_side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2ghp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oi81r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bo3sa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6664q")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1po1e"]
+radius = 19.0
+
+[node name="Conjunta" type="CharacterBody2D" node_paths=PackedStringArray("vida_component", "hitbox_component")]
+script = ExtResource("1_f02mc")
+move_up = &"i"
+move_down = &"k"
+move_right = &"l"
+move_left = &"j"
+vida_component = NodePath("VidaComponent")
+hitbox_component = NodePath("HitboxComponent")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_0ohso")
+animation = &"idle"
+frame_progress = 0.478585
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+script = ExtResource("3_rb3al")
+
+[node name="Hitbox" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_1po1e")
+
+[node name="VidaComponent" type="Node2D" parent="."]
+script = ExtResource("4_aerj6")
