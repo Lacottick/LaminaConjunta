@@ -16,29 +16,28 @@ var input_direction
 
 func _ready():
 	y_sort_enabled = true
-	hitbox_component.connect("body_entered", _on_hitbox_component_body_entered)
 
-func get_input_animation()->Vector2:
+func get_input_animation()->void:
 	input_direction = Input.get_vector(move_left, move_right, move_up, move_down);
 	if(input_direction.length() >0):
 		if(input_direction.y == -1):
 			animated_sprite.play("walk_up");
-		if(input_direction.y == 1):
+		elif(input_direction.y == 1):
 			animated_sprite.play("walk_down");
 		if(input_direction.x == 1):
 			animated_sprite.flip_h = false;
 			animated_sprite.play("walk_side"); 
-		if(input_direction.x == -1):
+		elif(input_direction.x == -1):
 			animated_sprite.flip_h = true;
 			animated_sprite.play("walk_side");
-		if(input_direction.x > 0 && input_direction.x < 1):
+		elif(input_direction.x > 0 && input_direction.x < 1):
 			if(input_direction.y < 0):
 				animated_sprite.flip_h = true;
 				animated_sprite.play("walk_diagonal_up")
 			elif(input_direction.y > 0):
 				animated_sprite.flip_h = false;
 				animated_sprite.play("walk_diagonal_down");
-		if(input_direction.x < 0 && input_direction.x > -1):
+		elif(input_direction.x < 0 && input_direction.x > -1):
 			if(input_direction.y < 0):
 				animated_sprite.flip_h = false;
 				animated_sprite.play("walk_diagonal_up")
@@ -48,19 +47,19 @@ func get_input_animation()->Vector2:
 	else:
 		if(animated_sprite.is_playing()):
 			animated_sprite.play("idle");
-	return input_direction
 
 func _physics_process(delta)->void:
 	if(animated_sprite):
 		get_input_animation()
 		if(input_direction.length() > 0):
 			if(input_direction.length() > 1):
-				speed = 400
+				velocity =  input_direction * speed * 2;
 			else:
-				speed = 250
-			velocity =  input_direction * speed;
+				velocity =  input_direction * speed;
 			move_and_slide();
+			position.x = clamp(position.x, 0, get_viewport_rect().size.x)
+			position.y = clamp(position.y, 0, get_viewport_rect().size.y)
 
-
-func _on_hitbox_component_body_entered(body):
-	print(body)
+func body_entered(body):
+	if body is Inimigo:
+		hitbox_component.dano(1)

@@ -1,10 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://vxk1y7wcceel"]
+[gd_scene load_steps=22 format=3 uid="uid://vxk1y7wcceel"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_f02mc"]
 [ext_resource type="Texture2D" uid="uid://dwpjk51qjlt1o" path="res://Assets/Player/e4493aecbe03ac9.png" id="2_4abic"]
 [ext_resource type="Texture2D" uid="uid://bmppe5t5h8abv" path="res://icon.svg" id="2_ra0yn"]
-[ext_resource type="Script" path="res://Scripts/HitboxComponent.gd" id="3_rb3al"]
-[ext_resource type="Script" path="res://Scripts/VidaComponent.gd" id="4_aerj6"]
+[ext_resource type="PackedScene" uid="uid://cjlo0jr3yrwvm" path="res://Scripts/Hitbox/HitboxComponent.tscn" id="4_hyu56"]
+[ext_resource type="PackedScene" uid="uid://ffww53b7obbo" path="res://Scripts/Vida/VidaComponent.tscn" id="5_0cdnj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e0iee"]
 atlas = ExtResource("2_4abic")
@@ -136,8 +136,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1po1e"]
-radius = 19.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1sr4b"]
+radius = 84.0
+height = 268.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2ku1a"]
+radius = 31.0
+height = 62.0
 
 [node name="Conjunta" type="CharacterBody2D" node_paths=PackedStringArray("vida_component", "hitbox_component")]
 script = ExtResource("1_f02mc")
@@ -149,16 +154,21 @@ vida_component = NodePath("VidaComponent")
 hitbox_component = NodePath("HitboxComponent")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.1, 0.1)
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_0ohso")
-animation = &"idle"
-frame_progress = 0.478585
+animation = &"walk_side"
+frame_progress = 0.299454
+offset = Vector2(0, -141.5)
 
-[node name="HitboxComponent" type="Area2D" parent="."]
-script = ExtResource("3_rb3al")
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("vida_component") instance=ExtResource("4_hyu56")]
+vida_component = NodePath("../VidaComponent")
 
 [node name="Hitbox" type="CollisionShape2D" parent="HitboxComponent"]
-shape = SubResource("CircleShape2D_1po1e")
+position = Vector2(0, -141.5)
+shape = SubResource("CapsuleShape2D_1sr4b")
 
-[node name="VidaComponent" type="Node2D" parent="."]
-script = ExtResource("4_aerj6")
+[node name="VidaComponent" parent="." instance=ExtResource("5_0cdnj")]
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(-5, -38)
+shape = SubResource("CapsuleShape2D_2ku1a")
