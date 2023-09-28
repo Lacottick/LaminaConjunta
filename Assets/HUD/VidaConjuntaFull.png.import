@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcxymeoe6jul1"
-path="res://.godot/imported/TileMap.png-738924dc93dfbc2091091d8141dd3d1b.ctex"
+uid="uid://uhn536mndsjj"
+path="res://.godot/imported/VidaConjuntaFull.png-0a85a68fc4e2c07bf269a429f900d626.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/TileSet/TileMap.png"
-dest_files=["res://.godot/imported/TileMap.png-738924dc93dfbc2091091d8141dd3d1b.ctex"]
+source_file="res://Assets/HUD/VidaConjuntaFull.png"
+dest_files=["res://.godot/imported/VidaConjuntaFull.png-0a85a68fc4e2c07bf269a429f900d626.ctex"]
 
 [params]
 

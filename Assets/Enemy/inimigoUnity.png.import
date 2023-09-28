@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcxymeoe6jul1"
-path="res://.godot/imported/TileMap.png-738924dc93dfbc2091091d8141dd3d1b.ctex"
+uid="uid://pyxcosi477dw"
+path="res://.godot/imported/inimigoUnity.png-0654e55cf9a93c490ccfd4a0b62d79d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/TileSet/TileMap.png"
-dest_files=["res://.godot/imported/TileMap.png-738924dc93dfbc2091091d8141dd3d1b.ctex"]
+source_file="res://Assets/Enemy/inimigoUnity.png"
+dest_files=["res://.godot/imported/inimigoUnity.png-0654e55cf9a93c490ccfd4a0b62d79d0.ctex"]
 
 [params]
 

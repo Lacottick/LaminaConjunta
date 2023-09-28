@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcxymeoe6jul1"
-path="res://.godot/imported/TileMap.png-738924dc93dfbc2091091d8141dd3d1b.ctex"
+uid="uid://dyam13m61ebf2"
+path="res://.godot/imported/conjuntaFantasma.png-423114fad07821ce8ef101c8da36835b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/TileSet/TileMap.png"
-dest_files=["res://.godot/imported/TileMap.png-738924dc93dfbc2091091d8141dd3d1b.ctex"]
+source_file="res://Assets/Player/conjuntaFantasma.png"
+dest_files=["res://.godot/imported/conjuntaFantasma.png-423114fad07821ce8ef101c8da36835b.ctex"]
 
 [params]
 
