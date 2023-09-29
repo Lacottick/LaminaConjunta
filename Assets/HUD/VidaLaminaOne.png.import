@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwpjk51qjlt1o"
-path="res://.godot/imported/e4493aecbe03ac9.png-b7e6c25250da0a4b98496599055d807c.ctex"
+uid="uid://brlevecjdawla"
+path="res://.godot/imported/VidaLaminaOne.png-1af8e335f072a3ab9ad0e54cbdc25113.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player/e4493aecbe03ac9.png"
-dest_files=["res://.godot/imported/e4493aecbe03ac9.png-b7e6c25250da0a4b98496599055d807c.ctex"]
+source_file="res://Assets/HUD/VidaLaminaOne.png"
+dest_files=["res://.godot/imported/VidaLaminaOne.png-1af8e335f072a3ab9ad0e54cbdc25113.ctex"]
 
 [params]
 

@@ -208,6 +208,7 @@ hitbox_component = NodePath("HitboxComponent")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_0ohso")
 animation = &"walk_side"
+frame_progress = 0.369997
 offset = Vector2(0, -18)
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("vida_component") instance=ExtResource("4_hyu56")]

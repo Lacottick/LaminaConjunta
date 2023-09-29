@@ -1,9 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://c8togmce444ci"]
+[gd_scene load_steps=13 format=3 uid="uid://c8togmce444ci"]
 
 [ext_resource type="Script" path="res://Scenes/Main.gd" id="1_u23p7"]
 [ext_resource type="PackedScene" uid="uid://c5kxy3bvy22tn" path="res://Scenes/Player/Lamina.tscn" id="3_g0am8"]
 [ext_resource type="Texture2D" uid="uid://dcxymeoe6jul1" path="res://Assets/Sprites/TileSet/TileMap.png" id="3_wyk5p"]
 [ext_resource type="PackedScene" uid="uid://vxk1y7wcceel" path="res://Scenes/Player/Conjunta.tscn" id="4_fujma"]
+[ext_resource type="PackedScene" uid="uid://drd6jky8bfjr3" path="res://Scenes/HUD/LifeBar.tscn" id="5_2f1q6"]
+[ext_resource type="Texture2D" uid="uid://c0bjgr2lfleyu" path="res://Assets/HUD/VidaLaminaFull.png" id="6_bbgma"]
+[ext_resource type="Texture2D" uid="uid://uhn536mndsjj" path="res://Assets/HUD/VidaConjuntaFull.png" id="7_onppd"]
+[ext_resource type="Texture2D" uid="uid://dw8dv7q6yvdmf" path="res://Assets/HUD/contagemDePontos.png" id="8_7xdup"]
+[ext_resource type="Script" path="res://Scenes/HUD/PauseButton.gd" id="9_4tmhc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o7f6l"]
 texture = ExtResource("3_wyk5p")
@@ -60,6 +65,78 @@ point_count = 5
 y_sort_enabled = true
 texture_filter = 1
 script = ExtResource("1_u23p7")
+metadata/_edit_horizontal_guides_ = []
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/Control"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -449.5
+offset_top = -241.5
+offset_right = -328.5
+offset_bottom = -210.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "INICIAR JOGO!!"
+script = ExtResource("9_4tmhc")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer"]
+layout_mode = 2
+
+[node name="LaminaHealth" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" instance=ExtResource("5_2f1q6")]
+layout_mode = 2
+texture = ExtResource("6_bbgma")
+
+[node name="ConjuntaHealth" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" instance=ExtResource("5_2f1q6")]
+layout_mode = 2
+texture = ExtResource("7_onppd")
+
+[node name="Panel" type="PanelContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/Panel"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("8_7xdup")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/Panel"]
+layout_mode = 2
+
+[node name="ScoreLamina" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/Panel/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "0"
+horizontal_alignment = 1
+
+[node name="ScoreConjunta" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/Panel/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+horizontal_alignment = 1
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
@@ -70,15 +147,19 @@ layer_0/tile_data = PackedInt32Array(393216, 0, 1, 458752, 0, 1, 524288, 0, 1, 5
 [node name="Camera2D" type="Camera2D" parent="TileMap"]
 anchor_mode = 0
 
-[node name="Lamina" parent="." instance=ExtResource("3_g0am8")]
+[node name="Lamina" parent="." node_paths=PackedStringArray("health_bar", "score_label") instance=ExtResource("3_g0am8")]
 y_sort_enabled = true
 texture_filter = 1
 position = Vector2(167, 118)
+health_bar = NodePath("../CanvasLayer/Control/MarginContainer/VBoxContainer/LaminaHealth")
+score_label = NodePath("../CanvasLayer/Control/MarginContainer/VBoxContainer/Panel/HBoxContainer/ScoreLamina")
 
-[node name="Conjunta" parent="." instance=ExtResource("4_fujma")]
+[node name="Conjunta" parent="." node_paths=PackedStringArray("health_bar", "score_label") instance=ExtResource("4_fujma")]
 y_sort_enabled = true
 texture_filter = 1
 position = Vector2(246, 113)
+health_bar = NodePath("../CanvasLayer/Control/MarginContainer/VBoxContainer/ConjuntaHealth")
+score_label = NodePath("../CanvasLayer/Control/MarginContainer/VBoxContainer/Panel/HBoxContainer/ScoreConjunta")
 
 [node name="EnemyPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_o63yw")
@@ -87,12 +168,8 @@ curve = SubResource("Curve2D_o63yw")
 unique_name_in_owner = true
 
 [node name="EnemyTimer" type="Timer" parent="."]
+wait_time = 0.5
 autostart = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
-
+[connection signal="button_up" from="CanvasLayer/Control/Button" to="CanvasLayer/Control/Button" method="_on_button_up"]
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_enemy_timer_timeout"]

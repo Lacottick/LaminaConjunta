@@ -7,7 +7,10 @@ func _ready():
 
 func _process(delta):
 	pass
-
+func _on_player_killed(body):
+	pass
+func _on_enemy_killed(body):
+	body.get_parent().update_score()
 
 func _on_enemy_timer_timeout():
 	$EnemyPath/EnemySpawn.progress_ratio = randf()
@@ -21,3 +24,5 @@ func _on_enemy_timer_timeout():
 	enemy.linear_velocity = Vector2(randf_range(enemy.min_speed,enemy.max_speed),0)
 	enemy.linear_velocity = enemy.linear_velocity.rotated(direction)
 	enemy.get_node("AnimatedSprite2D").play("default")
+
+

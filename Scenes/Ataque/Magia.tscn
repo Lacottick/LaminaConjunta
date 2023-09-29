@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://dxhyt4edpf46y"]
+
+[ext_resource type="Texture2D" uid="uid://cgqngmp1mgpsd" path="res://Assets/Player/ConjuntaAtk.png" id="1_mxm3f"]
+[ext_resource type="Script" path="res://Scenes/Ataque/Magia.gd" id="1_t4653"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03aws"]
+atlas = ExtResource("1_mxm3f")
+region = Rect2(1, 0, 33, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_muh7v"]
+atlas = ExtResource("1_mxm3f")
+region = Rect2(34, 0, 33, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gqcc"]
+atlas = ExtResource("1_mxm3f")
+region = Rect2(67, 0, 33, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uw1k5"]
+atlas = ExtResource("1_mxm3f")
+region = Rect2(100, 0, 33, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6o6gp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03aws")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_muh7v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5gqcc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uw1k5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k0vle"]
+radius = 16.0
+height = 34.0
+
+[node name="Magia" type="RigidBody2D"]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_t4653")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_6o6gp")
+frame_progress = 0.0154645
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CapsuleShape2D_k0vle")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
