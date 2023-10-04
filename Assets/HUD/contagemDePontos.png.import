@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcxymeoe6jul1"
-path="res://.godot/imported/TileMap.png-738924dc93dfbc2091091d8141dd3d1b.ctex"
+uid="uid://dw8dv7q6yvdmf"
+path="res://.godot/imported/contagemDePontos.png-a7b0fdb9ed9a416ac9ea0fefb54936a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/TileSet/TileMap.png"
-dest_files=["res://.godot/imported/TileMap.png-738924dc93dfbc2091091d8141dd3d1b.ctex"]
+source_file="res://Assets/HUD/contagemDePontos.png"
+dest_files=["res://.godot/imported/contagemDePontos.png-a7b0fdb9ed9a416ac9ea0fefb54936a6.ctex"]
 
 [params]
 

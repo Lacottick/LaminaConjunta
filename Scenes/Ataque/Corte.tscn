@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://c47vt8farqmr8"]
+
+[ext_resource type="Script" path="res://Scenes/Ataque/Corte.gd" id="1_lauso"]
+[ext_resource type="Texture2D" uid="uid://bgo56wdssqiw6" path="res://Assets/Player/LaminaAtak.png" id="2_b13ms"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6r1i6"]
+atlas = ExtResource("2_b13ms")
+region = Rect2(0, 0, 70, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3w3qh"]
+atlas = ExtResource("2_b13ms")
+region = Rect2(70, 0, 70, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20mel"]
+atlas = ExtResource("2_b13ms")
+region = Rect2(140, 0, 70, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uadof"]
+atlas = ExtResource("2_b13ms")
+region = Rect2(210, 0, 70, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fuh2b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6r1i6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3w3qh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20mel")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_uadof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3w3qh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6r1i6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ahxr"]
+size = Vector2(35, 28)
+
+[node name="Corte" type="StaticBody2D"]
+script = ExtResource("1_lauso")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fuh2b")
+frame_progress = 0.48618
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 1)
+shape = SubResource("RectangleShape2D_1ahxr")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

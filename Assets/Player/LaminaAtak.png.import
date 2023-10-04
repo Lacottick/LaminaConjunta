@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcxymeoe6jul1"
-path="res://.godot/imported/TileMap.png-738924dc93dfbc2091091d8141dd3d1b.ctex"
+uid="uid://bgo56wdssqiw6"
+path="res://.godot/imported/LaminaAtak.png-0eb258b38a39e383f1989a5d72f6a8fc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/TileSet/TileMap.png"
-dest_files=["res://.godot/imported/TileMap.png-738924dc93dfbc2091091d8141dd3d1b.ctex"]
+source_file="res://Assets/Player/LaminaAtak.png"
+dest_files=["res://.godot/imported/LaminaAtak.png-0eb258b38a39e383f1989a5d72f6a8fc.ctex"]
 
 [params]
 

@@ -10,5 +10,10 @@ func dano(quantidade: int):
 	health -=quantidade
 	if(health == 0):
 		get_parent().queue_free()
+func cura(quantidade: int):
+	health += quantidade
+	if(health > max_health):
+		health = max_health
+
 func _process(delta):
 	pass
